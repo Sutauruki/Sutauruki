@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sutauruki TM Mentorship Program</title>
+    <style>
+        @media print {
+            body { margin: 0; }
+            .no-print { display: none; }
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 20px;
+        }
+        
+        .header h1 {
+            color: #667eea;
+            font-size: 2.2em;
+            margin: 0;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.1em;
+            color: #666;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+        
+        .intro {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: 1.05em;
+            text-align: center;
+        }
+        
+        .package {
+            margin-bottom: 25px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+        
+        .package:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+        }
+        
+        .package-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .package-icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+        
+        .package-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #333;
+            margin: 0;
+        }
+        
+        .technologies {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .pricing {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .price-item {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 12px 18px;
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .price-item:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .price-item:hover .price-label,
+        .price-item:hover .price-value {
+            color: white;
+        }
+        
+        .price-label {
+            font-size: 0.85em;
+            color: #667eea;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .price-value {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .cta h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+        }
+        
+        .cta p {
+            margin: 0;
+            font-size: 1.05em;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e9ecef;
+            color: #667eea;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        
+        @media (max-width: 600px) {
+            .pricing {
+                flex-direction: column;
+            }
+            
+            .price-item {
+                min-width: auto;
+            }
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.4em;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        
+        .selected-package {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #e9ecef;
+        }
+        
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>👨‍💻 Sutauruki TM Mentorship Program</h1>
+            <div class="subtitle">Learn Web Development</div>
+        </div>
+        
+        <div class="intro">
+            Here's a list of our flexible mentorship packages. You'll get 1-on-1 guidance, 3–4 sessions per week, and hands-on projects to sharpen your skills.
+        </div>
+        
+        <div class="package">
+            <div class="package-header">
+                <span class="package-icon">🧱</span>
+                <h2 class="package-title">Starter Frontend</h2>
+            </div>
+            <div class="technologies">HTML, CSS, JavaScript</div>
+            <div class="pricing">
+                <div class="price-item" onclick="openModal('Starter Frontend', 'Weekly', '₦3,000')">
+                    <span class="price-label">Weekly</span>
+                    <span class="price-value">₦3,000</span>
+                </div>
+                <div class="price-item" onclick="openModal('Starter Frontend', 'Monthly', '₦11,000')">
+                    <span class="price-label">Monthly</span>
+                    <span class="price-value">₦11,000</span>
+                </div>
+                <div class="price-item" onclick="openModal('Starter Frontend', '3 Months', '₦30,000')">
+                    <span class="price-label">3 Months</span>
+                    <span class="price-value">₦30,000</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="package">
+            <div class="package-header">
+                <span class="package-icon">⚛️</span>
+                <h2 class="package-title">Modern Frontend Pro</h2>
+            </div>
+            <div class="technologies">HTML, CSS, JavaScript, React, Tailwind CSS</div>
+            <div class="pricing">
+                <div class="price-item" onclick="openModal('Modern Frontend Pro', 'Weekly', '₦4,000')">
+                    <span class="price-label">Weekly</span>
+                    <span class="price-value">₦4,000</span>
+                </div>
+                <div class="price-item" onclick="openModal('Modern Frontend Pro', 'Monthly', '₦15,000')">
+                    <span class="price-label">Monthly</span>
+                    <span class="price-value">₦15,000</span>
+                </div>
+                <div class="price-item" onclick="openModal('Modern Frontend Pro', '3 Months', '₦45,000')">
+                    <span class="price-label">3 Months</span>
+                    <span class="price-value">₦45,000</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="package">
+            <div class="package-header">
+                <span class="package-icon">🛠️</span>
+                <h2 class="package-title">Backend Starter</h2>
+            </div>
+            <div class="technologies">HTML, CSS, JavaScript, Node.js, Express.js</div>
+            <div class="pricing">
+                <div class="price-item" onclick="openModal('Backend Starter', 'Weekly', '₦4,500')">
+                    <span class="price-label">Weekly</span>
+                    <span class="price-value">₦4,500</span>
+                </div>
+                <div class="price-item" onclick="openModal('Backend Starter', 'Monthly', '₦17,500')">
+                    <span class="price-label">Monthly</span>
+                    <span class="price-value">₦17,500</span>
+                </div>
+                <div class="price-item" onclick="openModal('Backend Starter', '3 Months', '₦50,000')">
+                    <span class="price-label">3 Months</span>
+                    <span class="price-value">₦50,000</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="package">
+            <div class="package-header">
+                <span class="package-icon">🔥</span>
+                <h2 class="package-title">Full Stack Dev Max</h2>
+            </div>
+            <div class="technologies">HTML, CSS, JavaScript, React, Tailwind CSS, Node.js, Express.js</div>
+            <div class="pricing">
+                <div class="price-item" onclick="openModal('Full Stack Dev Max', 'Weekly', '₦7,000')">
+                    <span class="price-label">Weekly</span>
+                    <span class="price-value">₦7,000</span>
+                </div>
+                <div class="price-item" onclick="openModal('Full Stack Dev Max', 'Monthly', '₦26,000')">
+                    <span class="price-label">Monthly</span>
+                    <span class="price-value">₦26,000</span>
+                </div>
+                <div class="price-item" onclick="openModal('Full Stack Dev Max', '3 Months', '₦75,000')">
+                    <span class="price-label">3 Months</span>
+                    <span class="price-value">₦75,000</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cta">
+            <h3>💬 Want to get started or ask questions?</h3>
+            <p>Just reply here and we'll plan your journey together.</p>
+        </div>
+        
+        <div class="footer">
+            Let's build your dev skills from scratch — the Sutauruki TM way.
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="applicationModal" class="modal">
+        <div class="modal-content">
+            <h3>Apply for Mentorship Program</h3>
+            <div id="selectedPackage" class="selected-package"></div>
+            <form id="applicationForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="your.email@example.com (optional)">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="08012345678 (optional)">
+                </div>
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Apply Now 📱</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let selectedPackageData = {};
+
+        function openModal(packageName, duration, price) {
+            selectedPackageData = {
+                package: packageName,
+                duration: duration,
+                price: price
+            };
+            
+            document.getElementById('selectedPackage').innerHTML = `
+                <strong>${packageName}</strong><br>
+                ${duration} - ${price}
+            `;
+            
+            document.getElementById('applicationModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('applicationModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            document.getElementById('applicationForm').reset();
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('applicationModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            
+            if (!fullName) {
+                alert('Please enter your full name');
+                return;
+            }
+
+            // Create WhatsApp message
+            let message = `🔥 *New Mentorship Application* 🔥\n\n`;
+            message += `👋 Hi! My name is *${fullName}*\n\n`;
+            message += `📚 *Package Interest:* ${selectedPackageData.package}\n`;
+            message += `⏰ *Duration:* ${selectedPackageData.duration}\n`;
+            message += `💰 *Price:* ${selectedPackageData.price}\n\n`;
+            
+            if (email) {
+                message += `📧 *Email:* ${email}\n`;
+            }
+            if (phone) {
+                message += `📱 *Phone:* ${phone}\n`;
+            }
+            
+            message += `\nI'm ready to start my web development journey with Sutauruki TM! 🚀\n\n`;
+            message += `When can we begin? Looking forward to hearing from you! 💪`;
+
+            // Encode message for URL
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/2347058395947?text=${encodedMessage}`;
+            
+            // Open WhatsApp
+            window.open(whatsappURL, '_blank');
+            
+            // Close modal
+            closeModal();
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
