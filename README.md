@@ -1,5 +1,5 @@
 # 💫 About Me:
-👋 Hi, I’m Sutauruki, a frontend developer with a passion for clean and responsive design.<br>💻 Skilled in HTML, CSS, JavaScript, and UI/UX design.<br>🚀 I enjoy building intuitive, user-friendly web applications.<br>🌱 Currently exploring backend development and new technologies.<br>📫 Let’s connect and collaborate on exciting projects!<br>
+👋 Hi, I’m Sutauruki, a Fullstack developer with a passion for clean and innovative design.<br>💻 Skilled in HTML, CSS, JavaScript, and UI/UX design.<br>🚀 I enjoy building intuitive, user-friendly web applications.<br>🌱 Currently exploring backend development and new technologies.<br>📫 Let’s connect and collaborate on exciting projects!<br>
 
 
 ## 🌐 Socials:
