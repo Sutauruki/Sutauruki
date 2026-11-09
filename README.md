@@ -2,7 +2,8 @@
 
 # Sutauruki
 
-<sub><i>soo-tow-ROO-kee · the inner light that feeds and fuels everything else</i></sub>
+<sub><i>· soo-tow-ROO-kee · 
+the inner light that feeds and fuels everything else</i></sub>
 
 **Fullstack Developer · Lagos, Nigeria**
 
